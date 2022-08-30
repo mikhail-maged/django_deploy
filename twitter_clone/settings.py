@@ -126,7 +126,6 @@ WSGI_APPLICATION = 'twitter_clone.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-load_dotenv(find_dotenv())
 
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)
@@ -206,5 +205,3 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
-
-django_on_heroku.settings(locals())
