@@ -25,7 +25,7 @@ from .serializers import UserDisplayProfileSerializer, UserEditProfileSerializer
 # Function based views to Class Based Views
 
 from django.contrib.auth.models import User
-
+from notification.models import Notification
 
 @api_view(['GET'])
 def user_profile_view(request, *args, **kwargs):
@@ -306,8 +306,19 @@ def followaction(request, name, *args, **kwargs):
         prof = qs.first()
         if (request.user in prof.followers.all()):
             prof.followers.remove(request.user)
+            Notification.objects.create(
+                foruser=prof.user,
+                byuser=request.user,
+                action="unfollow"
+            )
+
         else:
             prof.followers.add(request.user)
+            Notification.objects.create(
+                foruser=prof.user,
+                byuser=request.user,
+                action="follow"
+            )
         return Response({}, status=200)
 
 
