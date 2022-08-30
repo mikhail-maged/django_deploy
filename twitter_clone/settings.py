@@ -16,6 +16,10 @@ import dj_database_url
 from dotenv import load_dotenv, find_dotenv
 import django_on_heroku
 from datetime import timedelta
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -50,6 +54,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'cloudinary_storage',
     # own one
     'accounts',
     'profiles',
@@ -205,3 +210,11 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mkhmaged',
+    'API_KEY': '716639585919474',
+    'API_SECRET': 'du4b4P_28lxSbSA9nhqN_wyezWw'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
