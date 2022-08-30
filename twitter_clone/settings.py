@@ -207,4 +207,4 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-django_on_heroku.settings(locals())
+django_on_heroku.settings(locals(),staticfiles=False)
